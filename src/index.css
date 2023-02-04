@@ -1,13 +1,220 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --light: #eee;
+  --dark: #191919;
+  --darker: #252525;
+  --blue: #1A73E8;
+  --crimson: #DB3052;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  
+}
+
+body {
+  background-color: var(--darker);
+}
+
+.App {
+  color: var(--light);
+  text-align: center;
+  padding-top: 4rem;
+  
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 4rem;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  
+
+}
+
+h2 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: rgb(251, 248, 248);
+
+}
+
+
+.recipes {
+  display: grid;
+  max-width: 1024px;
+  margin: 1rem auto 0;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 1rem;
+  padding-bottom: 1mm;
+  border-color: #0140c8;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.recipe {
+  background-color: var(--dark);
+  padding: 1rem;
+  border-radius: 0px 50px;
+  border-color: #61DAFB;
+  text-align: left;
+  margin-bottom: 5%;
+  margin-top: 1%;
+  margin-left: 10%;
+  margin-right: 10%;
+  
+}
+
+.ads {
+  background-color: var(--dark);
+  padding: 1rem;
+  border-width: 5px;
+  border-radius: 15px 15px;
+  border-color: #61DAFB;
+  text-align: left;
+  margin-bottom: 5%;
+  margin-top: 1%;
+  margin-left: 10%;
+  margin-right: 10%;
+  
+}
+
+button {
+  appearance: none;
+  background: none;
+  border-color:#1A73E8;
+  border-width: 4px ;
+  outline: none;
+  cursor: pointer;
+
+  color: var(--darker);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin-left: 80%;
+  margin-top: auto;
+  border-radius: 50px;
+  background-color: var(--light);
+  
+}
+
+.buttons {
+  display: inline-block;
+  background-color: #fff;
+  color: #787878;
+  text-decoration: none;
+  transition: all 0.2s;
+
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  margin-left: -0.5rem;
+}
+
+.buttons button {
+  margin: 0 0.5rem;
+}
+
+.buttons:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 252, 252, 0.986);
+
+}
+
+.buttons::after {
+  content: "";
+  display: inline-block;
+  border-radius: 100px;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+  background-color: #fff;
+}
+
+.buttons:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+
+
+button.remove {
+  color: var(--light);
+  background-color: var(--crimson);
+}
+
+h4 {
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  line-height: 1.6;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: rgb(251, 248, 248);
+}
+
+ol, ul {
+  list-style: none;
+}
+
+li {
+  line-height: 1.4;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  text-align: left;
+}
+
+.popup-inner {
+  background-color: var(--dark);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 95%;
+  max-width: 880px;
+  overflow: auto;
+  max-height: 840px;
+}
+
+.popup h2 {
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group:last-of-type {
+  margin-bottom: 0;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  resize: vertical;
+  max-height: 200px;
+  margin-bottom: 0.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group button {
+  margin-top: 1rem;
 }
