@@ -1,6 +1,6 @@
 import { db } from "./firebase.config"
 import { useState, useEffect } from "react"
-import { collection, onSnapshot, doc, addDoc, deleteDoc, query, orderBy } from "firebase/firestore"
+import { collection, onSnapshot, doc, addDoc, deleteDoc, query, orderBy, where } from "firebase/firestore"
 
 function App() {
 
@@ -20,9 +20,13 @@ function App() {
   const setAdminsRef = collection(db, "subadmin")
   const adData_CollectionRef = collection(db, "AdData_Collection")
   const complainCollectionRef = collection(db, "ComplainCollection")
-  const q = query(gamesCollectionRef, orderBy("Rank"));
 
-  useEffect((or) => {
+//Sorting Data
+  const q = query(gamesCollectionRef, orderBy("Rank"));
+  const a = query(collection(db, "AdData_Collection"), where("Status", "==", "Pending"))
+
+
+  useEffect(() => {
     onSnapshot(q, snapshot => {
       setGames(snapshot.docs.map(doc => {
         return {
@@ -47,7 +51,7 @@ function App() {
   })
 
   useEffect(() => {
-    onSnapshot(adData_CollectionRef, snapshot => {
+    onSnapshot(a, snapshot => {
       setAds(snapshot.docs.map(doc => {
         return {
           id: doc.id,
@@ -70,7 +74,7 @@ function App() {
     })
   })
 
-// additional, [] also
+
 
   return (
     <div className="App">
@@ -83,11 +87,11 @@ function App() {
         </div>
              {GamesCollection.map((game, i) =>(
               <div className = "recipes" key = {game.id}>
-                <p> { game.Name } {game.Rank}</p>
+                <p> { game.Name }    Rank:  {game.Rank}</p>
               </div>
              ))}
         <div className = "button">
-          <button onClick > View More</button>
+        <button> View { q.viewing ? 'less' : 'more'}</button>
         </div>
       </div>
 
@@ -100,7 +104,7 @@ function App() {
           </div>
         ))}
         <div className = "button">
-          <button onClick = {() => "../src/AdminPages/Games.js"} > View More </button>
+          <button> View More </button>
         </div>
       </div>
 
@@ -109,7 +113,7 @@ function App() {
       <h2>Pending Ads</h2>
         {AdData_Collection.map((ads, i) =>(
           <div className="recipes">
-            <p> { ads.Adname }</p>
+            <p> { ads.Adname }   Status:  { ads.Status }</p>
           </div>
         ))}
         <div className = "button">
