@@ -35,10 +35,10 @@ function Ads() {
           <h2>Pending Ads</h2>
             {AdData_Collection.map((ads, i) =>(
               <div className="recipes">
-                <p> { ads.Adname }</p>
+                <div><p> { ads.Adname } <button onClick={() => setPopupActive(!popupActive)}>View</button></p></div>
               </div>
             ))}
-            <button onClick={() => setPopupActive(!popupActive)}>View</button>
+            
           </div>
 
           {popupActive && <div className = "popup">
